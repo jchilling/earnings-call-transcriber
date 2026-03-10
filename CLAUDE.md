@@ -38,6 +38,10 @@
 - Zero context switching required from the user
 - Go fix failing CI tests without being told how
 
+### 7. Teaching 
+- Treat the user as a junior software engineer not familiar with the techniques / frameworks / architecture + system design you use. 
+- Treat development like pair programming and teach the user your design choices and techniques / frameworks / architecture by writing to `tasks/lessions.md`
+
 ## Task Management
 
 1. **Plan First**: Write plan to `tasks/todo.md` with checkable items
@@ -194,3 +198,5 @@ See `agents/` directory for subagent definitions. The project is designed for pa
 - **analysis-agent**: Works on `src/analysis/` and prompt templates
 - **test-agent**: Works on `tests/` — writes tests for completed modules
 Each agent should use worktree isolation to avoid conflicts.
+
+ 
