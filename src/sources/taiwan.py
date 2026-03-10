@@ -5,13 +5,19 @@ Post System (公開資訊觀測站, mops.twse.com.tw). The new MOPS SPA uses a
 two-step API: first POST JSON to get a signed URL, then GET the HTML.
 """
 
+from __future__ import annotations
+
 import asyncio
 import logging
 import ssl
 from datetime import datetime
+from typing import TYPE_CHECKING
 
 import httpx
 from bs4 import BeautifulSoup
+
+if TYPE_CHECKING:
+    from src.sources.audio_resolver import AudioResolver
 
 from src.exceptions import RateLimitError, ScraperConnectionError, ScraperParseError
 from src.sources.base import BaseScraper, EarningsCallInfo
@@ -75,10 +81,12 @@ class TaiwanScraper(BaseScraper):
         self,
         http_client: httpx.AsyncClient | None = None,
         rate_limit_secs: float = _DEFAULT_RATE_LIMIT_SECS,
+        audio_resolver: AudioResolver | None = None,
     ) -> None:
         super().__init__(http_client)
         self._rate_limit_secs = rate_limit_secs
         self._last_request_time: float = 0.0
+        self._audio_resolver = audio_resolver
 
     async def _get_client(self) -> httpx.AsyncClient:
         """Lazy-initialize HTTP client with relaxed SSL for MOPS.
@@ -479,10 +487,21 @@ class TaiwanScraper(BaseScraper):
     async def get_audio_url(self, call_info: EarningsCallInfo) -> str | None:
         """Resolve audio URL for a discovered call.
 
-        MOPS does not host audio files. Audio lives on individual company
-        IR pages. This will be implemented in a future phase.
+        Uses the AudioResolver to try multiple strategies in priority order:
+        1. HiNet OTT Live (HLS streams)
+        2. MOPS direct webcast/video links
+        3. Company IR page scraping
+        4. YouTube search
+
+        Args:
+            call_info: Earnings call metadata from discover_calls.
 
         Returns:
-            None (always, in Phase 1).
+            Audio/video URL if found, None if all strategies fail.
         """
-        return None
+        from src.sources.audio_resolver import AudioResolver
+
+        if self._audio_resolver is None:
+            self._audio_resolver = AudioResolver()
+
+        return await self._audio_resolver.resolve(call_info)

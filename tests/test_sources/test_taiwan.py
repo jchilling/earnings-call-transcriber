@@ -386,14 +386,44 @@ class TestContextManager:
 
 class TestGetAudioUrl:
     @pytest.mark.asyncio
-    async def test_always_returns_none(self, scraper):
+    async def test_delegates_to_audio_resolver(self, scraper):
+        """get_audio_url should use AudioResolver to find audio."""
+        from unittest.mock import AsyncMock
+
+        from src.sources.audio_resolver import AudioResolver
+
+        mock_resolver = AsyncMock(spec=AudioResolver)
+        mock_resolver.resolve.return_value = "https://cdn.example.com/audio.m3u8"
+        scraper._audio_resolver = mock_resolver
+
         info = EarningsCallInfo(
             company_name="台積電",
             ticker="2330",
             exchange="TWSE",
             call_date=datetime(2026, 1, 16),
         )
-        assert await scraper.get_audio_url(info) is None
+        result = await scraper.get_audio_url(info)
+        assert result == "https://cdn.example.com/audio.m3u8"
+        mock_resolver.resolve.assert_called_once_with(info)
+
+    @pytest.mark.asyncio
+    async def test_returns_none_when_resolver_finds_nothing(self, scraper):
+        from unittest.mock import AsyncMock
+
+        from src.sources.audio_resolver import AudioResolver
+
+        mock_resolver = AsyncMock(spec=AudioResolver)
+        mock_resolver.resolve.return_value = None
+        scraper._audio_resolver = mock_resolver
+
+        info = EarningsCallInfo(
+            company_name="鴻海",
+            ticker="2317",
+            exchange="TWSE",
+            call_date=datetime(2026, 3, 5),
+        )
+        result = await scraper.get_audio_url(info)
+        assert result is None
 
 
 # --- Properties ---
