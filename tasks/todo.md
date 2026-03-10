@@ -1,23 +1,21 @@
-# Project Scaffold — Initial Setup
+# Whisper Local Transcription Module
 
 ## Plan
-Scaffold the Python project foundation: package config, core modules, models, and Docker services.
+Build the local Whisper transcription module (`src/transcription/whisper_local.py`) with supporting infrastructure.
 
 ## Tasks
 
-- [x] 1. Create `pyproject.toml` with all dependencies (FastAPI, SQLAlchemy, Whisper, Celery, etc.)
-- [x] 2. Create `src/__init__.py`
-- [x] 3. Create `src/config.py` — pydantic-settings for DB, Redis, API keys
-- [x] 4. Create `src/exceptions.py` — custom exception hierarchy
-- [x] 5. Create `src/sources/__init__.py` and `src/sources/base.py` — abstract base scraper
-- [x] 6. Create `src/models/__init__.py`, `base.py`, `company.py`, `earnings_call.py`, `analysis.py`
-- [x] 7. Create `docker/docker-compose.yml` — PostgreSQL (pgvector) + Redis
-- [x] 8. Create `.env.example` with all required env vars
-- [x] 9. Verify: poetry resolves deps, all files parse cleanly
+- [x] 1. Create `src/transcription/__init__.py` with `TranscriptSegment` and `TranscriptionResult` dataclasses
+- [x] 2. Create `src/audio/__init__.py`
+- [x] 3. Create `src/audio/preprocessor.py` — ffmpeg wrapper to convert to 16kHz mono WAV
+- [x] 4. Create `src/transcription/whisper_local.py` — local Whisper inference with chunking
+- [x] 5. Create `tests/test_transcription/` with unit tests (20 tests)
+- [x] 6. Verify: all files parse, ruff passes, 20/20 tests pass
 
 ## Review
-- Poetry resolves 158 packages successfully (dry-run)
-- All 7 Python files pass syntax validation
-- pgvector/pgvector:pg16 image used for native vector support
-- Models use UUID PKs, timestamp mixins, proper FK relationships
-- Circular imports between models handled via bottom-of-file imports
+- All 7 new files pass syntax validation and ruff lint
+- 20/20 tests pass (7 preprocessor + 13 whisper_local)
+- Note: tests need `PYTHONPATH=.` since pyproject.toml doesn't configure src as a package root
+- Whisper import is lazy (inside `_get_model`) so the module works even if openai-whisper isn't installed
+- Audio chunking at 30-min boundaries with 30s overlap for long earnings calls
+- Thread pool executor used for CPU-bound Whisper inference (keeps async loop responsive)
