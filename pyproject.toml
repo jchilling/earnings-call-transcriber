@@ -34,11 +34,16 @@ selenium = "^4.27.0"
 yt-dlp = "^2024.12.0"
 
 # Transcription
-openai-whisper = "^20240930"
+faster-whisper = "^1.0.0"
 openai = "^1.58.0"
 
 # Speaker diarization
 pyannote-audio = "^3.3.0"
+# Pin torchaudio 2.6.0 — pyannote 3.x needs AudioMetaData API removed in 2.7+
+torchaudio = "2.6.0"
+torch = "2.6.0"
+# Pin huggingface_hub <1.0 — pyannote 3.x passes use_auth_token kwarg dropped in 1.0
+huggingface-hub = ">=0.20.0,<1.0.0"
 
 # LLM analysis
 anthropic = "^0.42.0"
