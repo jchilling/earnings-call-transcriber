@@ -1,6 +1,9 @@
 """Local Whisper inference for speech-to-text transcription.
 
-Uses OpenAI's Whisper model (large-v3 by default) running locally.
+Uses faster-whisper (CTranslate2 backend) for ~4x faster inference than
+openai-whisper, with lower memory usage. Supports the same model weights
+(large-v3 by default).
+
 Handles long audio (>30 min) by chunking with overlap to avoid truncation.
 """
 
@@ -28,14 +31,14 @@ _model_cache: dict[str, Any] = {}
 
 
 def _get_model(model_name: str, device: str) -> Any:
-    """Load and cache a Whisper model.
+    """Load and cache a faster-whisper model.
 
     Args:
         model_name: Whisper model size (e.g. "large-v3", "medium", "base").
-        device: Compute device ("cpu", "cuda", "mps").
+        device: Compute device ("cpu", "cuda", "auto").
 
     Returns:
-        Loaded whisper model instance.
+        Loaded WhisperModel instance.
 
     Raises:
         WhisperModelError: If the model cannot be loaded.
@@ -45,15 +48,20 @@ def _get_model(model_name: str, device: str) -> Any:
         return _model_cache[cache_key]
 
     try:
-        import whisper
+        from faster_whisper import WhisperModel
     except ImportError as e:
         raise WhisperModelError(
-            "openai-whisper is not installed. Install with: pip install openai-whisper"
+            "faster-whisper is not installed. Install with: pip install faster-whisper"
         ) from e
 
     logger.info("loading_whisper_model", model=model_name, device=device)
+
+    # faster-whisper uses compute_type to control precision.
+    # For CPU use int8 for speed; for CUDA use float16.
+    compute_type = "float16" if device == "cuda" else "int8"
+
     try:
-        model = whisper.load_model(model_name, device=device)
+        model = WhisperModel(model_name, device=device, compute_type=compute_type)
     except Exception as e:
         raise WhisperModelError(f"Failed to load Whisper model '{model_name}': {e}") from e
 
@@ -69,37 +77,53 @@ def _transcribe_sync(
     language: str | None,
     initial_prompt: str | None,
 ) -> dict[str, Any]:
-    """Run Whisper transcription synchronously (called in executor).
+    """Run faster-whisper transcription synchronously (called in executor).
 
     Args:
         audio_path: Path to 16kHz mono WAV file.
         model_name: Whisper model name.
         device: Compute device.
         language: ISO language code to force, or None for auto-detect.
-        initial_prompt: Optional prompt to condition the model (e.g. company/speaker names).
+        initial_prompt: Optional prompt to condition the model.
 
     Returns:
-        Raw Whisper result dict with keys: text, segments, language.
+        Dict with keys: segments (list of dicts), language (str).
     """
     model = _get_model(model_name, device)
 
-    decode_options: dict[str, Any] = {
-        "verbose": False,
-        "word_timestamps": False,
+    kwargs: dict[str, Any] = {
+        "word_timestamps": True,
+        "vad_filter": True,
     }
     if language:
-        decode_options["language"] = language
+        kwargs["language"] = language
     if initial_prompt:
-        decode_options["initial_prompt"] = initial_prompt
+        kwargs["initial_prompt"] = initial_prompt
 
-    return model.transcribe(audio_path, **decode_options)
+    # faster-whisper returns (segment_iterator, transcription_info)
+    segment_iter, info = model.transcribe(audio_path, **kwargs)
+
+    # Consume the iterator into a list of dicts
+    segments = []
+    for seg in segment_iter:
+        segments.append({
+            "text": seg.text.strip(),
+            "start": seg.start,
+            "end": seg.end,
+            "avg_logprob": seg.avg_logprob,
+        })
+
+    return {
+        "segments": segments,
+        "language": info.language,
+    }
 
 
 def _segments_from_whisper(raw_segments: list[dict[str, Any]]) -> list[TranscriptSegment]:
-    """Convert Whisper's raw segment dicts to TranscriptSegment objects.
+    """Convert faster-whisper segment dicts to TranscriptSegment objects.
 
     Args:
-        raw_segments: List of segment dicts from whisper.transcribe().
+        raw_segments: List of segment dicts from _transcribe_sync().
 
     Returns:
         List of TranscriptSegment instances.
@@ -108,7 +132,7 @@ def _segments_from_whisper(raw_segments: list[dict[str, Any]]) -> list[Transcrip
     for seg in raw_segments:
         segments.append(
             TranscriptSegment(
-                text=seg["text"].strip(),
+                text=seg["text"],
                 start_time=seg["start"],
                 end_time=seg["end"],
                 confidence=seg.get("avg_logprob", 0.0),
@@ -175,8 +199,9 @@ def _merge_chunk_segments(
 ) -> list[TranscriptSegment]:
     """Merge segments from multiple chunks, handling overlap deduplication.
 
-    For overlapping regions, we keep segments from the earlier chunk since
-    they tend to have better context from preceding audio.
+    Uses a timestamp-based approach: for each segment in the overlap zone,
+    we check if its absolute start time is past the last segment we kept.
+    This prevents both gaps (missed audio) and duplicates.
 
     Args:
         all_chunk_segments: Segments per chunk, in order.
@@ -199,10 +224,12 @@ def _merge_chunk_segments(
             absolute_start = seg.start_time + time_offset
             absolute_end = seg.end_time + time_offset
 
-            # Skip segments that fall within the overlap zone of the previous chunk.
-            # The previous chunk already covered this region.
+            # For chunks after the first, segments in the overlap zone
+            # may duplicate what the previous chunk already covered.
+            # Keep the segment only if it starts after the last merged segment ends.
             if chunk_idx > 0 and seg.start_time < overlap:
-                continue
+                if merged and absolute_start < merged[-1].end_time:
+                    continue
 
             merged.append(
                 TranscriptSegment(
@@ -227,7 +254,7 @@ async def transcribe_audio(
     device: str | None = None,
     preprocess: bool = True,
 ) -> TranscriptionResult:
-    """Transcribe an audio file using local Whisper.
+    """Transcribe an audio file using local faster-whisper.
 
     This is the main entry point for local transcription. It handles:
     1. Preprocessing to 16kHz mono WAV (if needed)

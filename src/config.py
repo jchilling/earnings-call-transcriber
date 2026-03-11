@@ -26,6 +26,14 @@ class Settings(BaseSettings):
     # API keys
     openai_api_key: str = ""
     anthropic_api_key: str = ""
+    deepseek_api_key: str = ""
+
+    # DeepSeek (for LLM speaker identification)
+    deepseek_model: str = "deepseek-chat"
+    deepseek_reasoner_model: str = "deepseek-reasoner"
+
+    # HuggingFace (for pyannote speaker diarization)
+    hf_token: str = ""
 
     # Whisper
     whisper_model: str = "large-v3"
