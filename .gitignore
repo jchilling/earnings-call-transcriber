@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Audio files
+*.mp3
+*.wav
+*.m4a
+*.flac
+*.ogg
+
+# Test output
+test_output/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Poetry
+poetry.lock
+
+# Whisper models
+models/
+
+# Celery
+celerybeat-schedule
+
+# Docker
+docker-compose.override.yml
