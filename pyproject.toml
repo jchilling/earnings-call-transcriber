@@ -30,6 +30,7 @@ pydantic-settings = "^2.7.0"
 # HTTP & scraping
 httpx = "^0.28.0"
 beautifulsoup4 = "^4.12.0"
+pyyaml = "^6.0"
 selenium = "^4.27.0"
 yt-dlp = "^2024.12.0"
 

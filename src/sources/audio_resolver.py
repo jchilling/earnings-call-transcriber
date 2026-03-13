@@ -4,11 +4,12 @@ Tries multiple strategies in priority order to find a working audio
 URL for a given earnings call. Strategies are pluggable — new sources
 can be added without modifying existing code.
 
-Strategy priority:
+Strategy priority (per-company, defined in data/companies.yaml):
 1. HiNet OTT Live — HLS streams for companies with known HiNet presence
-2. MOPS links — Direct webcast/video URLs from MOPS table columns
-3. Company IR page — Scrape individual IR websites for media links
-4. YouTube — Search company YouTube channel for the call
+2. MOPS Direct Link — URLs from MOPS webcast/video columns
+3. IR Page — Scrape company IR page with per-company instructions
+
+For unregistered tickers, all strategies are tried in default order.
 """
 
 import logging
@@ -23,43 +24,6 @@ from src.sources.hinet_ott import HiNetOTTClient
 logger = logging.getLogger(__name__)
 
 
-# --- Company metadata for audio resolution ---
-
-COMPANY_METADATA: dict[str, dict] = {
-    "2330": {  # TSMC
-        "name": "台積電",
-        "hinet_slug": "tsmc",
-        "hinet_cdn": "tsmcvod-ott2b.cdn.hinet.net",
-        "ir_url": "https://investor.tsmc.com",
-        "youtube_channel": None,
-    },
-    "1101": {  # TCC Group
-        "name": "台泥",
-        "hinet_slug": None,
-        "ir_url": "https://www.tccgroup.com.tw/investor",
-        "youtube_channel": None,
-    },
-    "2317": {  # Foxconn
-        "name": "鴻海",
-        "hinet_slug": None,
-        "ir_url": "https://www.foxconn.com/en-us/investor-relations",
-        "youtube_channel": None,
-    },
-    "2308": {  # Delta Electronics
-        "name": "台達電",
-        "hinet_slug": None,
-        "ir_url": "https://www.deltaww.com/en-US/ir",
-        "youtube_channel": None,
-    },
-    "2454": {  # MediaTek
-        "name": "聯發科",
-        "hinet_slug": None,
-        "ir_url": "https://corp.mediatek.com/investor-relations",
-        "youtube_channel": None,
-    },
-}
-
-
 class AudioStrategy(ABC):
     """Interface for audio URL resolution strategies."""
 
@@ -68,35 +32,30 @@ class AudioStrategy(ABC):
     def name(self) -> str:
         """Human-readable strategy name."""
 
+    @property
     @abstractmethod
-    async def can_handle(self, call_info: EarningsCallInfo) -> bool:
-        """Check if this strategy might work for the given call.
-
-        Args:
-            call_info: Earnings call metadata.
-
-        Returns:
-            True if this strategy should be attempted.
-        """
+    def strategy_id(self) -> str:
+        """Machine identifier matching YAML config (e.g. 'hinet_ott')."""
 
     @abstractmethod
-    async def resolve(self, call_info: EarningsCallInfo) -> str | None:
-        """Try to resolve an audio/video URL for the call.
+    async def can_handle(
+        self, call_info: EarningsCallInfo, params: dict | None = None
+    ) -> bool:
+        """Check if this strategy might work for the given call."""
 
-        Args:
-            call_info: Earnings call metadata.
-
-        Returns:
-            Audio/video URL if found, None otherwise.
-        """
+    @abstractmethod
+    async def resolve(
+        self, call_info: EarningsCallInfo, params: dict | None = None
+    ) -> str | None:
+        """Try to resolve an audio/video URL for the call."""
 
 
 class HiNetOTTStrategy(AudioStrategy):
     """Resolve audio via HiNet OTT Live platform.
 
-    Works for companies with a known HiNet slug (e.g. TSMC → "tsmc").
-    Queries the HiNet backend for video listings, matches by date,
-    and constructs an HLS M3U8 URL.
+    Params (from registry):
+        slug: Company slug on HiNet (e.g. "tsmc")
+        cdn_host: CDN hostname for M3U8 URLs
     """
 
     def __init__(self, hinet_client: HiNetOTTClient | None = None) -> None:
@@ -106,22 +65,30 @@ class HiNetOTTStrategy(AudioStrategy):
     def name(self) -> str:
         return "HiNet OTT Live"
 
+    @property
+    def strategy_id(self) -> str:
+        return "hinet_ott"
+
     async def _get_client(self) -> HiNetOTTClient:
         if self._client is None:
             self._client = HiNetOTTClient()
         return self._client
 
-    async def can_handle(self, call_info: EarningsCallInfo) -> bool:
-        meta = COMPANY_METADATA.get(call_info.ticker, {})
-        return meta.get("hinet_slug") is not None
+    async def can_handle(
+        self, call_info: EarningsCallInfo, params: dict | None = None
+    ) -> bool:
+        return bool(params and params.get("slug"))
 
-    async def resolve(self, call_info: EarningsCallInfo) -> str | None:
-        meta = COMPANY_METADATA.get(call_info.ticker, {})
-        slug = meta.get("hinet_slug")
+    async def resolve(
+        self, call_info: EarningsCallInfo, params: dict | None = None
+    ) -> str | None:
+        if not params:
+            return None
+        slug = params.get("slug")
         if not slug:
             return None
 
-        cdn_host = meta.get("hinet_cdn")
+        cdn_host = params.get("cdn_host")
         client = await self._get_client()
 
         try:
@@ -151,26 +118,33 @@ class HiNetOTTStrategy(AudioStrategy):
 class MOPSLinkStrategy(AudioStrategy):
     """Resolve audio from MOPS webcast/video columns.
 
-    MOPS columns 8 (公司網站) and 9 (影音連結) sometimes contain
-    direct URLs to webcast platforms or video files.
+    MOPS columns 8 and 9 sometimes contain direct URLs to webcast
+    platforms or video files. Rarely useful in practice — most contain
+    links to IR portal webpages rather than actual media.
     """
 
     @property
     def name(self) -> str:
         return "MOPS Direct Link"
 
-    async def can_handle(self, call_info: EarningsCallInfo) -> bool:
-        # Check if we have a webcast URL or video_info from MOPS
+    @property
+    def strategy_id(self) -> str:
+        return "mops_link"
+
+    async def can_handle(
+        self, call_info: EarningsCallInfo, params: dict | None = None
+    ) -> bool:
         if call_info.webcast_url:
             return True
         video_info = call_info.metadata.get("video_info", "")
         return bool(video_info and "http" in video_info)
 
-    async def resolve(self, call_info: EarningsCallInfo) -> str | None:
+    async def resolve(
+        self, call_info: EarningsCallInfo, params: dict | None = None
+    ) -> str | None:
         # Try video_info first (column 9 — more likely to be direct media)
         video_info = call_info.metadata.get("video_info", "")
         if video_info and "http" in video_info:
-            # Extract URL from text (may contain surrounding text)
             url_match = re.search(r"https?://\S+", video_info)
             if url_match:
                 url = url_match.group(0).rstrip(")")
@@ -192,8 +166,11 @@ class MOPSLinkStrategy(AudioStrategy):
 class IRPageStrategy(AudioStrategy):
     """Resolve audio by scraping the company's IR page.
 
-    Visits the company's investor relations page and looks for links
-    to audio/video files or embedded media players related to earnings calls.
+    Params (from registry):
+        url_template: URL with {year} and {quarter} placeholders
+        link_text: Anchor text to search for (e.g. "音訊播放")
+        follow_links: If true, follow matching anchors to find media on second page
+        media_pattern: Regex for matching media URLs (overrides default)
     """
 
     def __init__(self, http_client: httpx.AsyncClient | None = None) -> None:
@@ -202,6 +179,10 @@ class IRPageStrategy(AudioStrategy):
     @property
     def name(self) -> str:
         return "IR Page Scraping"
+
+    @property
+    def strategy_id(self) -> str:
+        return "ir_page"
 
     async def _get_client(self) -> httpx.AsyncClient:
         if self._client is None:
@@ -217,17 +198,30 @@ class IRPageStrategy(AudioStrategy):
             )
         return self._client
 
-    async def can_handle(self, call_info: EarningsCallInfo) -> bool:
-        meta = COMPANY_METADATA.get(call_info.ticker, {})
-        return bool(meta.get("ir_url"))
+    async def can_handle(
+        self, call_info: EarningsCallInfo, params: dict | None = None
+    ) -> bool:
+        return bool(params and params.get("url_template"))
 
-    async def resolve(self, call_info: EarningsCallInfo) -> str | None:
-        meta = COMPANY_METADATA.get(call_info.ticker, {})
-        ir_url = meta.get("ir_url")
-        if not ir_url:
+    async def resolve(
+        self, call_info: EarningsCallInfo, params: dict | None = None
+    ) -> str | None:
+        if not params:
             return None
 
+        url_template = params.get("url_template")
+        if not url_template:
+            return None
+
+        # Fill in placeholders
+        fiscal_year = call_info.fiscal_year or call_info.call_date.year
+        fiscal_quarter = call_info.fiscal_quarter or 1
+        ir_url = url_template.format(year=fiscal_year, quarter=fiscal_quarter)
+
         client = await self._get_client()
+        media_pattern = params.get("media_pattern")
+        link_text = params.get("link_text")
+        follow_links = params.get("follow_links", False)
 
         try:
             resp = await client.get(ir_url)
@@ -236,23 +230,87 @@ class IRPageStrategy(AudioStrategy):
             logger.warning("IR page fetch failed for %s: %s", ir_url, exc)
             return None
 
-        return self._find_media_url(resp.text, call_info)
+        # If follow_links + link_text: two-hop resolution
+        if follow_links and link_text:
+            result = await self._two_hop_resolve(
+                resp.text, ir_url, link_text, media_pattern, call_info, client
+            )
+            if result:
+                return result
+
+        # Single-page media search
+        return self._find_media_url(
+            resp.text, call_info, media_pattern=media_pattern
+        )
+
+    async def _two_hop_resolve(
+        self,
+        html: str,
+        base_url: str,
+        link_text: str,
+        media_pattern: str | None,
+        call_info: EarningsCallInfo,
+        client: httpx.AsyncClient,
+    ) -> str | None:
+        """Find an anchor by text, follow the link, search for media."""
+        from urllib.parse import urljoin
+
+        from bs4 import BeautifulSoup
+
+        soup = BeautifulSoup(html, "html.parser")
+
+        # Find anchor matching link_text (partial match)
+        target_link = None
+        for a_tag in soup.find_all("a", href=True):
+            if link_text in a_tag.get_text():
+                target_link = a_tag["href"]
+                break
+
+        if not target_link:
+            logger.debug("No link matching '%s' found on %s", link_text, base_url)
+            # Fall through to single-page search
+            return None
+
+        # Resolve relative URL
+        follow_url = urljoin(base_url, target_link)
+        logger.info("Following link '%s' → %s", link_text, follow_url)
+
+        try:
+            resp2 = await client.get(follow_url)
+            resp2.raise_for_status()
+        except httpx.HTTPError as exc:
+            logger.warning("Two-hop follow failed for %s: %s", follow_url, exc)
+            return None
+
+        return self._find_media_url(
+            resp2.text, call_info, media_pattern=media_pattern
+        )
 
     @staticmethod
-    def _find_media_url(html: str, call_info: EarningsCallInfo) -> str | None:
+    def _find_media_url(
+        html: str,
+        call_info: EarningsCallInfo,
+        media_pattern: str | None = None,
+    ) -> str | None:
         """Search HTML for audio/video links matching the call date."""
         from bs4 import BeautifulSoup
 
         soup = BeautifulSoup(html, "html.parser")
-        media_extensions = re.compile(r"\.(mp3|mp4|m3u8|wav|m4a|webm)", re.IGNORECASE)
+
+        if media_pattern:
+            extensions_re = re.compile(media_pattern, re.IGNORECASE)
+        else:
+            extensions_re = re.compile(
+                r"\.(mp3|mp4|m3u8|wav|m4a|webm)", re.IGNORECASE
+            )
+
         call_year = str(call_info.call_date.year)
         call_date_str = call_info.call_date.strftime("%Y%m%d")
 
         # Look for direct media links
         for link in soup.find_all("a", href=True):
             href = link["href"]
-            if media_extensions.search(href):
-                # Prefer links near the call date
+            if extensions_re.search(href):
                 if call_date_str in href or call_year in href:
                     logger.info("IR page found media link: %s", href)
                     return href
@@ -261,67 +319,10 @@ class IRPageStrategy(AudioStrategy):
         for tag in soup.find_all(["iframe", "embed", "source", "video"]):
             src = tag.get("src") or tag.get("data-src") or ""
             if src and ("http" in src or src.startswith("//")):
-                if media_extensions.search(src) or "webcast" in src.lower():
+                if extensions_re.search(src) or "webcast" in src.lower():
                     full_url = src if src.startswith("http") else f"https:{src}"
                     logger.info("IR page found embedded media: %s", full_url)
                     return full_url
-
-        return None
-
-
-class YouTubeStrategy(AudioStrategy):
-    """Resolve audio via YouTube search using yt-dlp.
-
-    Searches for the company's earnings call on YouTube and returns
-    a yt-dlp extractable URL.
-    """
-
-    @property
-    def name(self) -> str:
-        return "YouTube Search"
-
-    async def can_handle(self, call_info: EarningsCallInfo) -> bool:
-        # YouTube is always worth trying as a last resort
-        return True
-
-    async def resolve(self, call_info: EarningsCallInfo) -> str | None:
-        import asyncio
-
-        meta = COMPANY_METADATA.get(call_info.ticker, {})
-        company_name = meta.get("name") or call_info.company_name
-        date_str = call_info.call_date.strftime("%Y")
-        quarter = call_info.fiscal_quarter or ""
-        q_str = f"Q{quarter}" if quarter else ""
-
-        search_query = f"{company_name} 法說會 {q_str} {date_str}".strip()
-
-        # Use yt-dlp to search YouTube (ytsearch1: returns first result)
-        cmd = [
-            "yt-dlp",
-            "--no-download",
-            "--print", "webpage_url",
-            f"ytsearch1:{search_query}",
-        ]
-
-        try:
-            proc = await asyncio.create_subprocess_exec(
-                *cmd,
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE,
-            )
-            stdout, stderr = await asyncio.wait_for(proc.communicate(), timeout=30)
-        except (TimeoutError, FileNotFoundError) as exc:
-            logger.warning("yt-dlp search failed: %s", exc)
-            return None
-
-        if proc.returncode != 0:
-            logger.debug("yt-dlp search returned no results for: %s", search_query)
-            return None
-
-        url = stdout.decode().strip()
-        if url and url.startswith("http"):
-            logger.info("YouTube resolved: %s → %s", search_query, url)
-            return url
 
         return None
 
@@ -341,23 +342,33 @@ def _looks_like_media_url(url: str) -> bool:
     return any(re.search(p, url_lower) for p in media_patterns)
 
 
+# Strategy ID → class mapping for registry-driven instantiation
+_STRATEGY_CLASSES: dict[str, type[AudioStrategy]] = {
+    "hinet_ott": HiNetOTTStrategy,
+    "ir_page": IRPageStrategy,
+    "mops_link": MOPSLinkStrategy,
+}
+
+
 class AudioResolver:
     """Dispatches audio URL resolution across multiple strategies.
 
-    Tries each strategy in priority order until one returns a URL.
-    Caches which strategy worked per ticker so subsequent calls for the
-    same company try the winning strategy first (avoids wasted network
-    calls to strategies that won't work for that company).
+    When a CompanyRegistry is provided, uses per-company strategy configs
+    from YAML. For unregistered tickers, falls back to trying all
+    strategies in default order.
 
-    The cache is in-memory only — it lives for the lifetime of this
-    resolver instance. No persistence across process restarts.
+    Caches which strategy worked per ticker so subsequent calls for the
+    same company try the winning strategy first.
     """
 
     def __init__(
         self,
         strategies: list[AudioStrategy] | None = None,
         http_client: httpx.AsyncClient | None = None,
+        registry: "CompanyRegistry | None" = None,
     ) -> None:
+        from src.sources.registry import CompanyRegistry
+
         if strategies is not None:
             self._strategies = strategies
         else:
@@ -365,8 +376,12 @@ class AudioResolver:
                 HiNetOTTStrategy(),
                 MOPSLinkStrategy(),
                 IRPageStrategy(http_client=http_client),
-                YouTubeStrategy(),
             ]
+        self._registry = registry
+        # Build strategy_id → strategy instance lookup
+        self._strategy_map: dict[str, AudioStrategy] = {
+            s.strategy_id: s for s in self._strategies
+        }
         # ticker → strategy name that last succeeded
         self._strategy_cache: dict[str, str] = {}
 
@@ -379,35 +394,56 @@ class AudioResolver:
         """Read-only view of the ticker → strategy name cache."""
         return dict(self._strategy_cache)
 
-    def _get_strategy_order(self, ticker: str) -> list[AudioStrategy]:
-        """Return strategies ordered with the cached winner first.
+    def _get_strategy_order(
+        self, ticker: str
+    ) -> list[tuple[AudioStrategy, dict | None]]:
+        """Return (strategy, params) pairs in priority order.
 
-        If ticker "1101" previously resolved via "MOPS Direct Link",
-        returns [MOPSLinkStrategy, HiNetOTTStrategy, IRPageStrategy, YouTubeStrategy]
-        so we try the known-good strategy first without skipping fallbacks.
+        If the ticker is in the registry, uses the registry's strategy
+        order with per-company params. Otherwise falls back to all
+        strategies in default order with no params.
+
+        The cache promotes the last-successful strategy to the front.
         """
+        # Registry-driven order
+        if self._registry is not None:
+            configs = self._registry.get_audio_strategies(ticker)
+            if configs:
+                pairs: list[tuple[AudioStrategy, dict | None]] = []
+                for cfg in configs:
+                    strategy = self._strategy_map.get(cfg.name)
+                    if strategy:
+                        pairs.append((strategy, dict(cfg.params) if cfg.params else None))
+                return self._apply_cache(ticker, pairs)
+
+        # Fallback: all strategies, no params
+        pairs = [(s, None) for s in self._strategies]
+        return self._apply_cache(ticker, pairs)
+
+    def _apply_cache(
+        self,
+        ticker: str,
+        pairs: list[tuple[AudioStrategy, dict | None]],
+    ) -> list[tuple[AudioStrategy, dict | None]]:
+        """Move the cached winning strategy to the front."""
         cached_name = self._strategy_cache.get(ticker)
         if cached_name is None:
-            return list(self._strategies)
+            return pairs
 
-        # Move the cached strategy to the front
-        cached = None
+        cached_pair = None
         rest = []
-        for s in self._strategies:
-            if s.name == cached_name:
-                cached = s
+        for pair in pairs:
+            if pair[0].name == cached_name:
+                cached_pair = pair
             else:
-                rest.append(s)
+                rest.append(pair)
 
-        if cached is not None:
-            return [cached, *rest]
-        return list(self._strategies)
+        if cached_pair is not None:
+            return [cached_pair, *rest]
+        return pairs
 
     async def resolve(self, call_info: EarningsCallInfo) -> str | None:
         """Try each strategy in order to find an audio URL.
-
-        If a strategy succeeds, it's cached for this ticker so it's
-        tried first on subsequent calls.
 
         Args:
             call_info: Earnings call metadata from MOPS discovery.
@@ -417,9 +453,9 @@ class AudioResolver:
         """
         ordered = self._get_strategy_order(call_info.ticker)
 
-        for strategy in ordered:
+        for strategy, params in ordered:
             try:
-                if not await strategy.can_handle(call_info):
+                if not await strategy.can_handle(call_info, params=params):
                     logger.debug(
                         "Strategy %s cannot handle %s", strategy.name, call_info.ticker
                     )
@@ -431,9 +467,8 @@ class AudioResolver:
                     call_info.ticker,
                     call_info.call_date.date(),
                 )
-                url = await strategy.resolve(call_info)
+                url = await strategy.resolve(call_info, params=params)
                 if url:
-                    # Cache the winning strategy for this ticker
                     self._strategy_cache[call_info.ticker] = strategy.name
                     logger.info(
                         "Resolved via %s: %s → %s",

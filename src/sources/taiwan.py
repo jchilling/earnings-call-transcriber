@@ -18,6 +18,7 @@ from bs4 import BeautifulSoup
 
 if TYPE_CHECKING:
     from src.sources.audio_resolver import AudioResolver
+    from src.sources.registry import CompanyRegistry
 
 from src.exceptions import RateLimitError, ScraperConnectionError, ScraperParseError
 from src.sources.base import BaseScraper, EarningsCallInfo
@@ -25,20 +26,6 @@ from src.sources.base import BaseScraper, EarningsCallInfo
 logger = logging.getLogger(__name__)
 
 MOPS_API_URL = "https://mops.twse.com.tw/mops/api/redirectToOld"
-
-# Top 10 TWSE companies by market cap (as of early 2026)
-TOP_TAIWAN_TICKERS: dict[str, str] = {
-    "2330": "台積電 (TSMC)",
-    "2317": "鴻海 (Foxconn)",
-    "2308": "台達電 (Delta Electronics)",
-    "2454": "聯發科 (MediaTek)",
-    "2881": "富邦金 (Fubon FHC)",
-    "3711": "日月光投控 (ASE Technology)",
-    "2882": "國泰金 (Cathay FHC)",
-    "2382": "廣達 (Quanta Computer)",
-    "2412": "中華電 (Chunghwa Telecom)",
-    "2891": "中信金 (CTBC FHC)",
-}
 
 _DEFAULT_RATE_LIMIT_SECS = 2.0
 _MAX_RETRIES = 3
@@ -82,11 +69,13 @@ class TaiwanScraper(BaseScraper):
         http_client: httpx.AsyncClient | None = None,
         rate_limit_secs: float = _DEFAULT_RATE_LIMIT_SECS,
         audio_resolver: AudioResolver | None = None,
+        registry: CompanyRegistry | None = None,
     ) -> None:
         super().__init__(http_client)
         self._rate_limit_secs = rate_limit_secs
         self._last_request_time: float = 0.0
         self._audio_resolver = audio_resolver
+        self._registry = registry
 
     async def _get_client(self) -> httpx.AsyncClient:
         """Lazy-initialize HTTP client with relaxed SSL for MOPS.
@@ -123,8 +112,16 @@ class TaiwanScraper(BaseScraper):
             await asyncio.sleep(self._rate_limit_secs - elapsed)
         self._last_request_time = asyncio.get_event_loop().time()
 
+    def _get_typek(self, ticker: str) -> str:
+        """Get the MOPS TYPEK param for a ticker ('sii' or 'otc')."""
+        if self._registry is not None:
+            config = self._registry.get(ticker)
+            if config is not None:
+                return config.market_type
+        return "sii"
+
     async def _fetch_mops_page(
-        self, ticker: str, roc_year: int, month: int
+        self, ticker: str, roc_year: int, month: int, typek: str | None = None
     ) -> str:
         """Fetch MOPS investor conference data via the 2-step API.
 
@@ -135,6 +132,8 @@ class TaiwanScraper(BaseScraper):
             ticker: TWSE stock code (e.g. "2330").
             roc_year: ROC calendar year.
             month: Month number (1-12).
+            typek: Market type for MOPS ("sii" or "otc"). If None,
+                   looks up from registry or defaults to "sii".
 
         Returns:
             Raw HTML string containing the conference table.
@@ -143,6 +142,9 @@ class TaiwanScraper(BaseScraper):
             RateLimitError: If MOPS returns a security/rate-limit block.
             ScraperConnectionError: If all retries are exhausted.
         """
+        if typek is None:
+            typek = self._get_typek(ticker)
+
         client = await self._get_client()
         payload = {
             "apiName": "ajax_t100sb02_1",
@@ -151,7 +153,7 @@ class TaiwanScraper(BaseScraper):
                 "step": 1,
                 "firstin": 1,
                 "off": 1,
-                "TYPEK": "sii",
+                "TYPEK": typek,
                 "co_id": ticker,
                 "year": str(roc_year),
                 "month": str(month).zfill(2),
@@ -392,7 +394,12 @@ class TaiwanScraper(BaseScraper):
             return None
 
         fiscal_year, fiscal_quarter = self._infer_fiscal_quarter(call_date)
-        company_name = row.get("company_name", TOP_TAIWAN_TICKERS.get(ticker, ticker))
+        # Use MOPS row name, fall back to registry, fall back to ticker
+        company_name = row.get("company_name") or ticker
+        if company_name == ticker and self._registry is not None:
+            config = self._registry.get(ticker)
+            if config is not None:
+                company_name = config.name_local or config.name
 
         # Use webcast URL if available
         webcast_url = row.get("webcast_url") or None
@@ -437,7 +444,14 @@ class TaiwanScraper(BaseScraper):
             List of discovered EarningsCallInfo, sorted by date descending.
         """
         if tickers is None:
-            tickers = list(TOP_TAIWAN_TICKERS.keys())
+            if self._registry is not None:
+                tickers = self._registry.list_tickers(exchange="TWSE")
+            else:
+                tickers = []
+                logger.warning(
+                    "No tickers specified and no registry loaded — "
+                    "discover_calls will return empty results"
+                )
 
         # Build list of (roc_year, month) pairs covering the range
         year_months: list[tuple[int, int]] = []
@@ -502,6 +516,6 @@ class TaiwanScraper(BaseScraper):
         from src.sources.audio_resolver import AudioResolver
 
         if self._audio_resolver is None:
-            self._audio_resolver = AudioResolver()
+            self._audio_resolver = AudioResolver(registry=self._registry)
 
         return await self._audio_resolver.resolve(call_info)

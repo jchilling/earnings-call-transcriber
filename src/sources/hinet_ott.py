@@ -21,16 +21,6 @@ import httpx
 
 logger = logging.getLogger(__name__)
 
-# Known company slug → CDN host mappings.
-# Discovered by inspecting HiNet OTT Live player network requests.
-HINET_COMPANIES: dict[str, dict[str, str]] = {
-    "tsmc": {
-        "name": "台積電 (TSMC)",
-        "ticker": "2330",
-        "cdn_host": "tsmcvod-ott2b.cdn.hinet.net",
-    },
-}
-
 HINET_BACKEND_BASE = "https://ottlive.hinet.net/backend/company"
 HINET_DEFAULT_CDN_PATTERN = (
     "https://{cdn_host}/vod_{slug}/_definst_/"
@@ -219,8 +209,7 @@ class HiNetOTTClient:
             Full M3U8 playlist URL.
         """
         if cdn_host is None:
-            company = HINET_COMPANIES.get(slug, {})
-            cdn_host = company.get("cdn_host", f"{slug}vod-ott2b.cdn.hinet.net")
+            cdn_host = f"{slug}vod-ott2b.cdn.hinet.net"
 
         return HINET_DEFAULT_CDN_PATTERN.format(
             cdn_host=cdn_host,

@@ -24,6 +24,18 @@
 ## Audio Resolution
 - Cache winning strategies per ticker. TCC always has MP4 on media.taiwancement.com — no need to try HiNet first every time.
 - MOPS `video_info` column (column 9) is the most valuable field — often contains direct MP4 URLs from company CDNs.
+- **Generic multi-strategy resolver is too brittle** — YouTube returns wrong videos, IR page scraping can't handle diverse company sites. Each company needs a **custom per-company scraper** with tested parsing logic.
+- **Remove YouTube strategy entirely** — search-based audio discovery returns wrong results. Only use yt-dlp for downloading from known URLs (Google Drive, YouTube links found via scraping).
+- **yt-dlp handles Google Drive natively** — `yt-dlp --extract-audio --audio-format mp3` works on GDrive `/preview` and `/view` URLs. Normalize `/preview` → `/view` before passing.
+- **Zucast (zucast.com) is not scrapeable** — dynamic WebSocket player, no static media URLs. VOD on S3 requires auth. Skip and flag as `zucast_unavailable`.
+- **`<img>` is often a sibling, not a child** — when parsing IR pages, check the parent container (`<div>`) for both `<img>` and `<a>` tags rather than assuming `<img>` is nested inside `<a>`.
+- **winfoundry.com has broken SSL** — missing Subject Key Identifier in cert. Use `verify=False` for this domain.
+
+## Per-Company Scraper Architecture
+- **Pattern**: `scripts/scrapers/base_scraper.py` (shared download logic) + `scripts/scrapers/get_{ticker}_audio.py` (per-company IR page parsing).
+- **Idempotent**: Track results in `download_results.json`. Skip completed downloads on rerun. Retry failed PDFs even if audio succeeded.
+- **Orchestrator**: `scripts/get_audio_call.py` with `--ticker`, `--industry`, `--year`, `--start-year`/`--end-year` flags.
+- **WIN Semi (3105) coverage**: 2014-2020 all GDrive (100%), 2021-2022 all Zucast (0%), 2023-2025 alternating GDrive/Zucast by quarter (~50%).
 
 ## Taiwan MOPS
 - MOPS requires ROC year dates (Gregorian - 1911).

@@ -1,0 +1,216 @@
+# Company Registry for Taiwan Earnings Call Audio Resolution
+#
+# Each company entry defines:
+#   - Basic metadata (ticker, name, exchange, sector)
+#   - market_type: "sii" (listed) or "otc" (OTC) — maps to MOPS TYPEK param
+#   - audio.strategies: ordered list of strategies to try for finding audio
+#
+# Adding a new company = adding a YAML entry here. Zero code changes needed.
+#
+# Strategy reference:
+#   hinet_ott  — HiNet OTT Live HLS streams (slug + cdn_host required)
+#   ir_page    — Scrape company IR page (url_template, link_text, follow_links)
+#   mops_link  — Direct URLs from MOPS webcast/video columns
+
+companies:
+  # ── Top TWSE Companies ──────────────────────────────────────────────
+
+  - ticker: "2330"
+    name: "TSMC"
+    name_local: "台積電"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Semiconductors"
+    gics_sub_industry: "Semiconductors"
+    market_cap_usd_b: 900
+    language: "zh"
+    ir_url: "https://investor.tsmc.com"
+    audio:
+      strategies:
+        - name: "hinet_ott"
+          params:
+            slug: "tsmc"
+            cdn_host: "tsmcvod-ott2b.cdn.hinet.net"
+        - name: "ir_page"
+          params:
+            url_template: "https://investor.tsmc.com/chinese/quarterly-results/{year}/q{quarter}"
+            link_text: "線上會議影音重播"
+            follow_links: true
+
+  - ticker: "2317"
+    name: "Foxconn"
+    name_local: "鴻海"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Technology Hardware"
+    language: "zh"
+    ir_url: "https://www.foxconn.com/en-us/investor-relations"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://www.foxconn.com/en-us/investor-relations/financial-results"
+            media_pattern: "youtube\\.com|youtu\\.be|\\.(mp4|mp3|m3u8)"
+            follow_links: true
+
+  - ticker: "2308"
+    name: "Delta Electronics"
+    name_local: "台達電"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Electronic Equipment"
+    language: "zh"
+    ir_url: "https://www.deltaww.com/en-US/ir"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://www.deltaww.com/en-US/ir/analyst-meeting"
+            media_pattern: "youtube\\.com|youtu\\.be|\\.(mp4|mp3|m3u8)"
+            follow_links: true
+
+  - ticker: "2454"
+    name: "MediaTek"
+    name_local: "聯發科"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Semiconductors"
+    language: "zh"
+    ir_url: "https://corp.mediatek.com/investor-relations"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://corp.mediatek.com/investor-relations/quarterly-results"
+            media_pattern: "\\.(mp4|mp3|m3u8)|drive\\.google\\.com"
+            follow_links: true
+
+  - ticker: "2881"
+    name: "Fubon FHC"
+    name_local: "富邦金"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Financials"
+    language: "zh"
+    ir_url: "https://www.fubon.com/financialholdings/en/ir"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://www.fubon.com/financialholdings/en/ir/events/investor_conference.html"
+            media_pattern: "youtube\\.com|youtu\\.be|\\.(mp4|mp3|m3u8)"
+            follow_links: true
+
+  - ticker: "3711"
+    name: "ASE Technology"
+    name_local: "日月光投控"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Semiconductors"
+    language: "zh"
+    ir_url: "https://www.aseglobal.com/en/ir"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://www.aseglobal.com/en/ir/events"
+            media_pattern: "youtube\\.com|youtu\\.be|webcast|\\.(mp4|mp3|m3u8)"
+            follow_links: true
+
+  - ticker: "2882"
+    name: "Cathay FHC"
+    name_local: "國泰金"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Financials"
+    language: "zh"
+    ir_url: "https://www.cathayholdings.com/en/holdings/ir"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://www.cathayholdings.com/en/holdings/ir/events"
+            media_pattern: "youtube\\.com|youtu\\.be|\\.(mp4|mp3|m3u8)"
+            follow_links: true
+
+  - ticker: "2382"
+    name: "Quanta Computer"
+    name_local: "廣達"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Technology Hardware"
+    language: "zh"
+    ir_url: "https://www.quantatw.com/quanta/english/investor.aspx"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://www.quantatw.com/quanta/english/investor.aspx"
+            media_pattern: "youtube\\.com|youtu\\.be|\\.(mp4|mp3|m3u8)"
+            follow_links: true
+
+  - ticker: "2412"
+    name: "Chunghwa Telecom"
+    name_local: "中華電"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Telecommunications"
+    language: "zh"
+    ir_url: "https://www.cht.com.tw/en/home/cht/investors"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://www.cht.com.tw/en/home/cht/investors/ir-events"
+            media_pattern: "youtube\\.com|youtu\\.be|\\.(mp4|mp3|m3u8)"
+            follow_links: true
+
+  - ticker: "2891"
+    name: "CTBC FHC"
+    name_local: "中信金"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Financials"
+    language: "zh"
+    ir_url: "https://www.ctbcholding.com/en/ir"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://www.ctbcholding.com/en/ir/events"
+            media_pattern: "youtube\\.com|youtu\\.be|\\.(mp4|mp3|m3u8)"
+            follow_links: true
+
+  # ── OTC Companies ───────────────────────────────────────────────────
+
+  - ticker: "3081"
+    name: "LandMark Optoelectronics"
+    name_local: "聯亞光電"
+    exchange: "TWSE"
+    market_type: "otc"
+    sector: "Semiconductors"
+    language: "zh"
+    ir_url: "https://www.lmoc.com.tw"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://www.lmoc.com.tw/index.php?option=com_content&task=showlist&id=308&index=5"
+            link_text: "音訊播放"
+            follow_links: true
+
+  - ticker: "3105"
+    name: "WIN Semiconductors"
+    name_local: "穩懋"
+    exchange: "TWSE"
+    market_type: "sii"
+    sector: "Semiconductors"
+    language: "zh"
+    ir_url: "https://www.winfoundry.com"
+    audio:
+      strategies:
+        - name: "ir_page"
+          params:
+            url_template: "https://www.winfoundry.com/en-us/invest/invest_quarter_reports?page=1&year={year}"
+            link_text: "Webcast Replay"
+            media_pattern: "drive\\.google\\.com|\\.(mp4|mov|mp3)"

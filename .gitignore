@@ -31,6 +31,10 @@ Thumbs.db
 *.flac
 *.ogg
 
+# Downloaded data (audio, PDFs, results)
+data/audio/*/
+data/test_e2e/
+
 # Test output
 test_output/
 
@@ -49,3 +53,6 @@ celerybeat-schedule
 
 # Docker
 docker-compose.override.yml
+
+# CLAUDE
+CLAUDE.md
