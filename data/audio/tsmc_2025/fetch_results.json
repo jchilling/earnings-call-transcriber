@@ -1,0 +1,30 @@
+[
+  {
+    "quarter": "Q1_2025",
+    "date": "2025-04-17",
+    "url": "https://www.youtube.com/watch?v=F9ks-0VIo5c",
+    "file": "data/audio/tsmc_2025/tsmc_Q1_2025_20250417.mp3",
+    "size_mb": 93.0
+  },
+  {
+    "quarter": "Q2_2025",
+    "date": "2025-07-17",
+    "url": "https://www.youtube.com/watch?v=r9rjWfhIjQI",
+    "file": "data/audio/tsmc_2025/tsmc_Q2_2025_20250717.mp3",
+    "size_mb": 109.1
+  },
+  {
+    "quarter": "Q3_2025",
+    "date": "2025-10-16",
+    "url": "https://www.youtube.com/watch?v=hgL2L7YkS6U",
+    "file": "data/audio/tsmc_2025/tsmc_Q3_2025_20251016.mp3",
+    "size_mb": 72.2
+  },
+  {
+    "quarter": "Q4_2025",
+    "date": "2026-01-15",
+    "url": "https://www.youtube.com/watch?v=jK3FKsNjVNg",
+    "file": "data/audio/tsmc_2025/tsmc_Q4_2025_20260115.mp3",
+    "size_mb": 88.4
+  }
+]

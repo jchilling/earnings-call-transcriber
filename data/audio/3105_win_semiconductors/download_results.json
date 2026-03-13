@@ -1,0 +1,1134 @@
+{
+  "ticker": "3105",
+  "company": "WIN Semiconductors",
+  "results": [
+    {
+      "year": 2024,
+      "quarter": 1,
+      "audio_url": "https://www.zucast.com/webcast/0NuJFKX1",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/478?filename=1Q%202024%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2024_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/481?filename=1Q%202024%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2024_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2024,
+      "quarter": 2,
+      "audio_url": "https://drive.google.com/file/d/1DpoQGJSUdvfMfymhmJZn3baXW51ZL_Zn/view?usp=drive_link",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q2_2024.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/484?filename=2Q%202024%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2024_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/487?filename=2Q%202024%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2024_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2024,
+      "quarter": 3,
+      "audio_url": "https://www.zucast.com/webcast/NQA3T64q",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/490?filename=3Q%202024%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2024_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/493?filename=3Q%202024%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2024_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2024,
+      "quarter": 4,
+      "audio_url": "https://drive.google.com/file/d/16hMclaq6ndi1X-ttmL6P-LHaqMDMpJuz/view?usp=drive_link",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q4_2024.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/496?filename=4Q%202024%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2024_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/499?filename=4Q%202024%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2024_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2014,
+      "quarter": 1,
+      "audio_url": "https://drive.google.com/file/d/1hlkmTTnviuLKdk00EdIUW2c9jTBXzpFb/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q1_2014.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/266?filename=1Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2014_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/267?filename=1Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2014_presentation.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "document",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/268?filename=1Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E5%90%88%E4%BD%B5%E8%B2%A1%E5%8B%99%E5%A0%B1%E8%A1%A8.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2014_document.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2014,
+      "quarter": 2,
+      "audio_url": "https://drive.google.com/file/d/165fGup8UhPqxYIeliw-l2tRXfsaFYUSt/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q2_2014.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/263?filename=2Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2014_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/264?filename=2Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2014_presentation.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "document",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/265?filename=2Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E5%90%88%E4%BD%B5%E8%B2%A1%E5%8B%99%E5%A0%B1%E8%A1%A8.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2014_document.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2014,
+      "quarter": 3,
+      "audio_url": "https://drive.google.com/file/d/1p-DgbX5Pl9jmLMpigs0tt3rDWAl2pHb2/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q3_2014.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/260?filename=3Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2014_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/261?filename=3Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2014_presentation.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "document",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/262?filename=3Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E5%90%88%E4%BD%B5%E8%B2%A1%E5%8B%99%E5%A0%B1%E8%A1%A8.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2014_document.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2014,
+      "quarter": 4,
+      "audio_url": "https://drive.google.com/file/d/1-HkjuzlH4_64KfvHOq6lpADh9htkM8mU/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q4_2014.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/257?filename=4Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2014_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/258?filename=4Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2014_presentation.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "document",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/259?filename=4Q%202014%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E5%90%88%E4%BD%B5%E8%B2%A1%E5%8B%99%E5%A0%B1%E8%A1%A8.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2014_document.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2015,
+      "quarter": 1,
+      "audio_url": "https://drive.google.com/file/d/179fsB2b1ktMPkKqqwavdTIMjjluILv2v/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q1_2015.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/255?filename=1Q%202015%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2015_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/256?filename=1Q%202015%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2015_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2015,
+      "quarter": 2,
+      "audio_url": "https://drive.google.com/file/d/1SIi0T6Ykg7AGQMdP2_QNRsaRq3lrVL-q/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q2_2015.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/253?filename=2Q%202015%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2015_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/254?filename=2Q%202015%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2015_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2015,
+      "quarter": 3,
+      "audio_url": "https://drive.google.com/file/d/1JZ-AvjRelCfDZqBwvrYG2nqDnMhvSs2w/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q3_2015.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/251?filename=3Q%202015%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2015_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/252?filename=3Q%202015%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2015_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2015,
+      "quarter": 4,
+      "audio_url": "https://drive.google.com/file/d/1GCOIeyB1VYTqVtgow91YMSVETasIK7y1/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q4_2015.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/249?filename=4Q%202015%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2015_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/250?filename=4Q%202015%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2015_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2016,
+      "quarter": 1,
+      "audio_url": "https://drive.google.com/file/d/1Wtxca111HAQYqHojIyYro_ERpaoZxh_i/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q1_2016.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/247?filename=1Q%202016%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2016_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/248?filename=1Q%202016%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2016_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2016,
+      "quarter": 2,
+      "audio_url": "https://drive.google.com/file/d/1jrXAt2_enTjhI3ccJ3NRLBpZUVZOwn8l/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q2_2016.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/245?filename=2Q%202016%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2016_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/246?filename=2Q%202016%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2016_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2016,
+      "quarter": 3,
+      "audio_url": "https://drive.google.com/file/d/1IoWN2Cmmm9vm-K3I7h0Fxa8TgdIDYndv/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q3_2016.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/243?filename=3Q%202016%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2016_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/244?filename=3Q%202016%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2016_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2016,
+      "quarter": 4,
+      "audio_url": "https://drive.google.com/file/d/1IE1naYw1KRDNk8T82mkQiAAJ6bDzTnkE/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q4_2016.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/241?filename=4Q%202016%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2016_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/242?filename=4Q%202016%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2016_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2017,
+      "quarter": 1,
+      "audio_url": "https://drive.google.com/file/d/1fa_k7GSQDY8EO9IgIAH75djHlfcPODEC/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q1_2017.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/239?filename=1Q%202017%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2017_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/240?filename=1Q%202017%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2017_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2017,
+      "quarter": 2,
+      "audio_url": "https://drive.google.com/file/d/100GAuMinVw3roGg5HLuej_K6_2VbtdHW/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q2_2017.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/237?filename=2Q%202017%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2017_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/238?filename=2Q%202017%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2017_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2017,
+      "quarter": 3,
+      "audio_url": "https://drive.google.com/file/d/1ExAS9auAcxqkn6XvjF_FsFfS-WtpIyaU/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q3_2017.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/235?filename=3Q%202017%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2017_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/236?filename=3Q%202017%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2017_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2017,
+      "quarter": 4,
+      "audio_url": "https://drive.google.com/file/d/1YApXUcdQjljRTBM6ANu-7VNqvwZ3mdjh/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q4_2017.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/325?filename=4Q%202017%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2017_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/326?filename=4Q%202017%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2017_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2018,
+      "quarter": 1,
+      "audio_url": "https://drive.google.com/file/d/1-2-KwS5YzP9NDNmXuwVtm2hCTHKpby2N/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q1_2018.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/331?filename=1Q%202018%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2018_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/332?filename=1Q%202018%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2018_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2018,
+      "quarter": 2,
+      "audio_url": "https://drive.google.com/file/d/1t8OZZHpXykeQwGGp691cTVNnAeoQFpv0/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q2_2018.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/337?filename=2Q%202018%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2018_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/342?filename=2Q%202018%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2018_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2018,
+      "quarter": 3,
+      "audio_url": "https://drive.google.com/file/d/1BjleLviQo4rMFz00mBOXIc5TjtAoX_5V/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q3_2018.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/345?filename=3Q%202018%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2018_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/346?filename=3Q%202018%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2018_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2018,
+      "quarter": 4,
+      "audio_url": "https://drive.google.com/file/d/117s9fTHcUKWp56T_2S3fZhjlYX1IQoP6/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q4_2018.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/351?filename=4Q%202018%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2018_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/354?filename=4Q%202018%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2018_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2019,
+      "quarter": 1,
+      "audio_url": "https://drive.google.com/file/d/1EPzu9sYpSTgcChEgNnRAgvlJ-GktGBs0/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q1_2019.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/357?filename=1Q%202019%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2019_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/358?filename=1Q%202019%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2019_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2019,
+      "quarter": 2,
+      "audio_url": "https://drive.google.com/file/d/1kOzis9d10TTuMbzUXlaz7vf_3djXj_-2/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q2_2019.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/363?filename=2Q%202019%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2019_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/364?filename=2Q%202019%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2019_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2019,
+      "quarter": 3,
+      "audio_url": "https://drive.google.com/file/d/1W9HOQMlrRlVcgZZp4zXt-NdoJZ27HX-o/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q3_2019.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/369?filename=3Q%202019%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2019_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/370?filename=3Q%202019%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2019_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2019,
+      "quarter": 4,
+      "audio_url": "https://drive.google.com/file/d/1FF_NTqFdED5pidfuP0doqGYrZjLwSIAW/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q4_2019.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/375?filename=4Q%202019%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2019_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/376?filename=4Q%202019%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2019_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2020,
+      "quarter": 1,
+      "audio_url": "https://drive.google.com/file/d/1hd3NNZ-57K-xicCrDEM6JPKCU4glsBAt/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q1_2020.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/381?filename=1Q%202020%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2020_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/384?filename=1Q%202020%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2020_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2020,
+      "quarter": 2,
+      "audio_url": "https://drive.google.com/file/d/130NwbYvI0zVtdG347Lf_zrKphBpRf_0e/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q2_2020.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/387?filename=2Q%202020%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2020_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/390?filename=2Q%202020%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2020_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2020,
+      "quarter": 3,
+      "audio_url": "https://drive.google.com/file/d/1cjc6D6s7LTp4Y5tC8CdcnQ8Z2HaouM5Z/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q3_2020.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/393?filename=3Q%202020%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2020_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/396?filename=3Q%202020%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2020_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2020,
+      "quarter": 4,
+      "audio_url": "https://drive.google.com/file/d/1l0Mtmcvghknd02CWTjveI22uvRjQuxBt/preview",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q4_2020.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/399?filename=4Q%202020%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2020_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/402?filename=4Q%202020%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2020_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2021,
+      "quarter": 1,
+      "audio_url": "https://http://www.zucast.com/webcast/Dty9m9Er",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/405?filename=1Q%202021%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2021_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/408?filename=1Q%202021%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2021_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2021,
+      "quarter": 2,
+      "audio_url": "https://http://www.zucast.com/webcast/Pl9Ud83P",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/412?filename=2Q%202021%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2021_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/415?filename=2Q%202021%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2021_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2021,
+      "quarter": 3,
+      "audio_url": "https://http://www.zucast.com/webcast/A4xy4xck",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/418?filename=3Q%202021%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2021_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/421?filename=3Q%202021%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2021_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2021,
+      "quarter": 4,
+      "audio_url": "https://http://www.zucast.com/webcast/Zmzd0wIj",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/424?filename=4Q%202021%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2021_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/425?filename=4Q%202021%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2021_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2022,
+      "quarter": 1,
+      "audio_url": "https://http://www.zucast.com/webcast/kkLUVMm5",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/430?filename=1Q%202022%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2022_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/433?filename=1Q%202022%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2022_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2022,
+      "quarter": 2,
+      "audio_url": "https://http://www.zucast.com/webcast/sX442rgK",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/436?filename=2Q%202022%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2022_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/439?filename=2Q%202022%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2022_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2022,
+      "quarter": 3,
+      "audio_url": "https://http://www.zucast.com/webcast/Nz3qeOkC",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/442?filename=3Q%202022%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2022_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/445?filename=3Q%202022%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2022_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2022,
+      "quarter": 4,
+      "audio_url": "https://http://www.zucast.com/webcast/U5qMLGQS",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/448?filename=4Q%202022%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2022_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/451?filename=4Q%202022%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2022_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2023,
+      "quarter": 1,
+      "audio_url": "https://http://www.zucast.com/webcast/eUNel6eR",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/454?filename=1Q%202023%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2023_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/457?filename=1Q%202023%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2023_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2023,
+      "quarter": 2,
+      "audio_url": "https://http://www.zucast.com/webcast/iKhppZUt",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/460?filename=2Q%202023%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2023_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/463?filename=2Q%202023%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2023_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2023,
+      "quarter": 3,
+      "audio_url": "https://http://www.zucast.com/webcast/cXYWkw97",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/466?filename=3Q%202023%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2023_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/469?filename=3Q%202023%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2023_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2023,
+      "quarter": 4,
+      "audio_url": "https://drive.google.com/file/d/10wA32LzcjUELlISP5nUW3aSpH1wO7uhm/view?usp=drive_link",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q4_2023.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/472?filename=4Q%202023%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2023_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/475?filename=4Q%202023%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2023_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2025,
+      "quarter": 1,
+      "audio_url": "https://www.zucast.com/webcast/wJoD0ckJ",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/502?filename=1Q%202025%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2025_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/505?filename=1Q%202025%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q1_2025_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2025,
+      "quarter": 2,
+      "audio_url": "https://drive.google.com/file/d/1uOzy9xIugH2DWePxABb1jm2rqKsmhaj1/view?usp=drive_link",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q2_2025.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/508?filename=2Q%202025%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2025_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/511?filename=2Q%202025%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q2_2025_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    },
+    {
+      "year": 2025,
+      "quarter": 3,
+      "audio_url": "https://www.zucast.com/webcast/6WeZ8XiV",
+      "audio_source": "zucast",
+      "audio_path": null,
+      "audio_status": "zucast_unavailable",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/514?filename=3Q%202025%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2025_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/517?filename=3Q%202025%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q3_2025_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": "Zucast streams require dynamic auth — skipped"
+    },
+    {
+      "year": 2025,
+      "quarter": 4,
+      "audio_url": "https://drive.google.com/file/d/1k8QHayO8z0cCelmsWQBvaw_QoN_Cu4A_/view?usp=sharing",
+      "audio_source": "gdrive",
+      "audio_path": "data/audio/3105_win_semiconductors/3105_Q4_2025.mp3",
+      "audio_status": "ok",
+      "pdfs": [
+        {
+          "type": "press_release",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/520?filename=4Q%202025%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E6%96%B0%E8%81%9E%E7%A8%BF.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2025_press_release.pdf",
+          "status": "ok"
+        },
+        {
+          "type": "presentation",
+          "url": "https://www.winfoundry.com/en-us/Base/DownLoadFile/523?filename=4Q%202025%20%E6%B3%95%E8%AA%AA%E6%9C%83%20%E2%80%93%20%E7%B0%A1%E5%A0%B1.pdf&TargetTable=QuarterlyAttachment",
+          "path": "data/audio/3105_win_semiconductors/3105_Q4_2025_presentation.pdf",
+          "status": "ok"
+        }
+      ],
+      "error": null
+    }
+  ]
+}
