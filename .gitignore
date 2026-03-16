@@ -24,13 +24,16 @@ env/
 .DS_Store
 Thumbs.db
 
-# Audio files
+# Audio/media files
 *.mp3
 *.wav
 *.m4a
 *.flac
 *.ogg
 *.pdf
+
+# Scraped data (hosted on HuggingFace)
+data/audio/
 
 agents/
 tasks/
