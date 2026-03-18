@@ -3,9 +3,14 @@
 Runs Whisper transcription and speaker diarization (pyannote or VAD fallback),
 aligns results, extracts speaker names via regex + optional LLM enhancement,
 and returns a complete TranscriptionResult with named speakers.
+
+Supports two backends:
+- Local: CPU Whisper + VAD fallback (default)
+- Modal: GPU Whisper + pyannote + vocal analysis (when MODAL_ENABLED=true)
 """
 
 import asyncio
+import os
 from pathlib import Path
 
 import structlog
@@ -330,3 +335,126 @@ async def transcribe_with_diarization(
     finally:
         if temp_wav and wav_path.exists() and wav_path != audio_path:
             wav_path.unlink(missing_ok=True)
+
+
+async def transcribe_with_modal(
+    hf_path: str,
+    *,
+    language: str | None = None,
+    hf_token: str | None = None,
+    skip_speaker_id: bool = False,
+) -> TranscriptionResult:
+    """Run transcription via Modal GPU backend.
+
+    Downloads audio from HuggingFace inside Modal container, runs Whisper + pyannote
+    + vocal analysis on GPU, then runs DeepSeek speaker ID locally.
+
+    Args:
+        hf_path: Path within jchilling/taiwan-earnings-calls dataset.
+        language: Force language code, or None for auto-detect.
+        hf_token: HuggingFace token. Falls back to settings.
+        skip_speaker_id: Skip the DeepSeek speaker identification passes.
+
+    Returns:
+        TranscriptionResult with speaker-attributed segments, vocal metrics, and embeddings.
+    """
+    from src.modal_app.gpu_pipeline import process_earnings_call
+
+    resolved_hf_token = hf_token or settings.hf_token
+    if not resolved_hf_token:
+        raise ValueError("HF_TOKEN required for Modal pipeline")
+
+    logger.info("modal_pipeline_started", hf_path=hf_path)
+
+    # Call Modal GPU function
+    gpu_result = process_earnings_call.remote(
+        hf_path=hf_path,
+        hf_token=resolved_hf_token,
+        language=language,
+    )
+
+    logger.info("modal_gpu_completed", timing=gpu_result.get("timing", {}))
+
+    # Deserialize whisper segments + align with diarization
+    whisper_segments = gpu_result["whisper"]["segments"]
+    diar_segments = gpu_result.get("diarization", [])
+    vocal_metrics = gpu_result.get("vocal_metrics", [])
+
+    segments = []
+    for i, wseg in enumerate(whisper_segments):
+        speaker_id = None
+        if diar_segments:
+            best_overlap = 0.0
+            seg_mid = (wseg["start_time"] + wseg["end_time"]) / 2
+            for diar in diar_segments:
+                overlap_start = max(wseg["start_time"], diar["start_time"])
+                overlap_end = min(wseg["end_time"], diar["end_time"])
+                overlap = max(0.0, overlap_end - overlap_start)
+                if overlap > best_overlap:
+                    best_overlap = overlap
+                    speaker_id = diar["speaker_id"]
+            if speaker_id is None:
+                speaker_id = min(
+                    diar_segments,
+                    key=lambda d: abs((d["start_time"] + d["end_time"]) / 2 - seg_mid),
+                )["speaker_id"]
+
+        vm = vocal_metrics[i] if i < len(vocal_metrics) else None
+        segments.append(TranscriptSegment(
+            text=wseg["text"],
+            start_time=wseg["start_time"],
+            end_time=wseg["end_time"],
+            speaker_id=speaker_id,
+            language=wseg.get("language"),
+            confidence=wseg.get("confidence", 0.0),
+            vocal_metrics=vm if vm else None,
+        ))
+
+    # Build speaker dict
+    speaker_ids = {seg.speaker_id for seg in segments if seg.speaker_id}
+    speakers = {
+        sid: SpeakerInfo(
+            id=sid,
+            segments_count=sum(1 for s in segments if s.speaker_id == sid),
+        )
+        for sid in speaker_ids
+    }
+
+    if not skip_speaker_id:
+        # Regex extraction
+        speakers = extract_speaker_names(segments)
+
+        # LLM identification
+        segments, speakers = await enhance_speaker_names(segments, speakers)
+
+        # Merge speakers with same name
+        segments, speakers = _merge_speakers_by_name(segments, speakers)
+
+        # Apply names to segments
+        segments = _apply_speaker_names(segments, speakers)
+
+        # Reasoner correction
+        segments, speakers = await correct_speaker_assignments(segments, speakers)
+
+    full_text = " ".join(seg.text for seg in segments)
+
+    result = TranscriptionResult(
+        segments=segments,
+        full_text=full_text,
+        language=gpu_result["whisper"].get("language", ""),
+        model_used="large-v3",
+        duration_seconds=gpu_result["whisper"].get("duration", 0.0),
+        speakers=speakers,
+        vocal_profiles=gpu_result.get("vocal_profiles", []),
+        speaker_embeddings=gpu_result.get("speaker_embeddings", {}),
+        audio_quality=gpu_result.get("audio_quality"),
+    )
+
+    logger.info(
+        "modal_pipeline_completed",
+        segments=len(segments),
+        speakers_total=len(speakers),
+        speakers_identified=sum(1 for s in speakers.values() if s.name),
+    )
+
+    return result
