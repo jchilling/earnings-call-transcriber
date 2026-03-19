@@ -31,7 +31,7 @@ from openai import OpenAI
 # Paths
 # ---------------------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-TRANSCRIPTS_DIR = PROJECT_ROOT / ".claude" / "worktrees" / "transcription" / "data" / "transcripts"
+TRANSCRIPTS_DIR = PROJECT_ROOT / "data" / "transcripts"
 ALPHAMEMO_DIR = PROJECT_ROOT / "data" / "audio" / "alphamemo"
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 
